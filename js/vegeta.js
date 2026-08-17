@@ -30,7 +30,7 @@
 
   // The ?v= must be bumped together with the sheet, otherwise browsers keep
   // serving the previously cached PNG (that is what hid his legs).
-  var SPRITE_VERSION = "23";
+  var SPRITE_VERSION = "24";
   var SPRITE_URL = "images/vegeta.png?v=" + SPRITE_VERSION;
   // Keep SCALE a whole number. At 1.5 the sheet was drawn at 48 and shown at
   // 72, so every other source pixel came out twice as wide as its neighbour
