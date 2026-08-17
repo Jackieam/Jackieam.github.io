@@ -300,8 +300,11 @@ h1, h2, h3, h4 { font-family: var(--display); }
 
 @media (prefers-reduced-motion: reduce) {
   .shield.hit { animation: none; }
-  .shield-ping { animation: shield-ping 0.3s linear forwards; }
+  /* the ping's whole point is an expanding ring, so replace it with a fade
+     rather than a faster expansion */
+  .shield-ping { animation: shield-fade 0.4s linear forwards; transform: scale(2.4); }
 }
+@keyframes shield-fade { from { opacity: 1; } to { opacity: 0; } }
 
 .contact-row {
   list-style: none;
@@ -942,3 +945,40 @@ a.lk:hover {
   .footer { flex-direction: column; align-items: flex-start; gap: 14px; }
 }
 
+
+/* ================================================================== */
+/*  Reduced motion — the mascot holds still instead of disappearing.   */
+/*                                                                     */
+/*  js/vegeta.js stops the position/bob/tremor/squash loop and skips    */
+/*  the travelling orb and beam. What is left here is the CSS-driven    */
+/*  motion: the aura pulse, the Super Saiyan lightning, the expanding   */
+/*  shock rings, the page whiteout and the crumble/reform. Brightness   */
+/*  and opacity changes are kept — it is movement that this setting     */
+/*  asks to remove, not colour.                                        */
+/* ================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .vg-aura,
+  .vg-bolts i,
+  #site-vegeta.vg-reform,
+  .vg-beam.on { animation: none; }
+
+  .vg-bolts { display: none; }              /* flickering arcs, nothing but motion */
+
+  /* the detonation flash stays, as a fade rather than a scale-up */
+  .vg-boom {
+    animation: vg-boom-fade 0.45s ease-out forwards;
+    transform: translate(-50%, -50%) scale(1.6);
+  }
+  @keyframes vg-boom-fade { from { opacity: 0.95; } to { opacity: 0; } }
+
+  /* rings are suppressed in JS (rings = 0); belt and braces if one appears */
+  .vg-shock { display: none; }
+
+  /* the full-page wash is a big luminance jump — keep it much gentler */
+  .vg-whiteout { animation: vg-wash-soft 0.5s ease-out forwards; }
+  @keyframes vg-wash-soft { from { opacity: 0.22; } to { opacity: 0; } }
+
+  /* the speech bubble slides up 4px; fade it in place instead */
+  .vg-bubble { transform: none; }
+}

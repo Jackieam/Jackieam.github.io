@@ -21,8 +21,8 @@
 /*  switch on a slow retro tick while position, body lean and the turn    */
 /*  squash are eased at 60fps, so attacks wind up and recoil instead of   */
 /*  snapping between frames.                                              */
-/*  Disabled by prefers-reduced-motion, or localStorage                 */
-/*  "site-pet" = "off" (the footer link toggles this).                  */
+/*  prefers-reduced-motion holds him still rather than removing him; the     */
+/*  footer link switches him off entirely (localStorage "site-pet").         */
 /* ------------------------------------------------------------------ */
 
 (function () {
@@ -30,7 +30,7 @@
 
   // The ?v= must be bumped together with the sheet, otherwise browsers keep
   // serving the previously cached PNG (that is what hid his legs).
-  var SPRITE_VERSION = "24";
+  var SPRITE_VERSION = "25";
   var SPRITE_URL = "images/vegeta.png?v=" + SPRITE_VERSION;
   // Keep SCALE a whole number. At 1.5 the sheet was drawn at 48 and shown at
   // 72, so every other source pixel came out twice as wide as its neighbour
@@ -52,11 +52,16 @@
     flash: 5, boom: 6, meditate: 7, smirk: 8
   };
 
-  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  /* prefers-reduced-motion does not hide him — it makes him hold still.
+     Removing him entirely meant anyone whose OS has animation effects off
+     (the default on plenty of Windows machines) saw nothing at all. What that
+     setting actually asks for is no *movement*, so in STATIC mode he stands in
+     the corner, still changes pose, and his shots land without travelling. */
+  var STATIC = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   function storeGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
   function storeSet(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* private */ } }
-  function enabled() { return !reduced && storeGet("site-pet") !== "off"; }
+  function enabled() { return storeGet("site-pet") !== "off"; }
 
   function t(key, fallback) {
     if (window.siteI18n) {
@@ -84,13 +89,17 @@
   var raf = null;
 
   function faceTowards(f) {
+    if (STATIC) { facing = f; return; }
     if (f === facing || (turnStart && turnTo === f)) return;
     turnFrom = facing;
     turnTo = f;
     turnStart = performance.now();
   }
 
-  function setMotion(l, t) { leanTarget = l; tiltTarget = t; }
+  function setMotion(l, t) {
+    if (STATIC) return;                 // he braces and recoils only if motion is wanted
+    leanTarget = l; tiltTarget = t;
+  }
 
   /** brief white-hot flash on the sprite as a blast leaves his hands */
   function muzzle() {
@@ -131,6 +140,16 @@
       Pose switching stays on the slow retro tick; only motion runs smooth. */
   function render(now) {
     if (!wrap) { raf = null; return; }
+
+    if (STATIC) {
+      // one placement, no rAF loop: no bob, no tremor, no squash, no turn
+      wrap.style.transform =
+        "translate(" + (x - SIZE / 2) + "px," + (y - SIZE / 2) + "px)";
+      sprite.style.transform = "scaleX(" + facing + ")";
+      raf = null;
+      return;
+    }
+
     raf = requestAnimationFrame(render);
 
     lean += (leanTarget - lean) * 0.22;
@@ -199,7 +218,7 @@
 
   function detonate(px, py, size) {
     // size: 1 normal, 2 large
-    var rings = size > 1 ? 3 : 2;
+    var rings = STATIC ? 0 : (size > 1 ? 3 : 2);   // rings expand; the flash does not
     for (var i = 0; i < rings; i++) {
       (function (i) {
         setTimeout(function () {
@@ -222,6 +241,7 @@
 
   /** rotated beam from a hand to the target */
   function beam(from, tx, ty, cls, ms) {
+    if (STATIC) return;
     var dx = tx - from.x, dy = ty - from.y;
     var len = Math.hypot(dx, dy) + 30;
     var ang = Math.atan2(dy, dx) * 180 / Math.PI;
@@ -241,6 +261,7 @@
 
   /** ki sphere that flies from the palm to the target */
   function orb(from, tx, ty, done) {
+    if (STATIC) { done(); return; }     // nothing crosses the screen
     var el = document.createElement("div");
     el.className = "vg-orb";
     document.body.appendChild(el);
@@ -447,13 +468,13 @@
       wash.className = "vg-whiteout";
       document.body.appendChild(wash);
       setTimeout(function () { wash.remove(); }, 900);
-      wrap.classList.add("vg-dust");           // he crumbles away
+      if (!STATIC) wrap.classList.add("vg-dust");   // he crumbles away
     }, 1450);
 
     setTimeout(function () {                    // ... and reforms
       if (!wrap) return;
       wrap.classList.remove("vg-dust");
-      wrap.classList.add("vg-reform");
+      if (!STATIC) wrap.classList.add("vg-reform");
       setPose("smirk"); setAura(1);
       say(t("vg.back", "Hmph. Do not look so surprised."), 1800);
       rest();
@@ -564,6 +585,9 @@
   window.addEventListener("resize", function () {
     if (!wrap) return;
     x = homeX(); y = homeY();
+    // In STATIC mode render() runs once and stops, so no loop picks the new
+    // corner up — place him again by hand.
+    if (STATIC) render(0);
   });
 
   var toggle = document.getElementById("pet-toggle");
