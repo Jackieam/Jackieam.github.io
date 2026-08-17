@@ -20,6 +20,13 @@
   --grid: rgba(150, 180, 210, 0.05);
   --card-shadow: 0 12px 34px rgba(0, 0, 0, 0.38);
   --sh-line: rgba(63, 216, 232, 0.55);   /* portrait barrier mesh */
+  /* Venue label colours. These need a light-mode set: the tag used to sit on
+     its own dark pill over the figure, so pale tints were fine. Now that it is
+     a caption on the card, the pale values scored 1.5-1.7:1 on white. */
+  --v-neurips: #cbbcff;
+  --v-wacv:    #a8d0f8;
+  --v-journal: #8ae4c8;
+  --v-arxiv:   #ffbe96;
   --display: "Sora", "Inter", system-ui, sans-serif;
   --sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
@@ -50,6 +57,10 @@
   --grid: rgba(30, 60, 90, 0.05);
   --card-shadow: 0 10px 28px rgba(25, 40, 60, 0.1);
   --sh-line: rgba(11, 147, 170, 0.5);
+  --v-neurips: #5b46a8;
+  --v-wacv:    #2c5d92;
+  --v-journal: #157a60;
+  --v-arxiv:   #a8501f;
 }
 
 * { box-sizing: border-box; }
@@ -451,28 +462,28 @@ h1, h2, h3, h4 { font-family: var(--display); }
 }
 
 /* venue ribbon pinned to the teaser corner */
+/* The venue tag is a <figcaption>, so let it caption the figure instead of
+   covering it. It used to be absolutely positioned over the top-left of the
+   teaser, which hid whatever the figure had in that corner. Sitting below the
+   image, it cannot obscure anything no matter what the figure contains.
+   The tint is mixed from the tag's own colour, so each venue keeps its hue. */
 .ribbon {
-  position: absolute;
-  top: 8px;
-  left: 8px;
+  display: inline-block;
+  margin-top: 8px;
   font-family: var(--mono);
   font-size: 0.66rem;
   font-weight: 600;
   letter-spacing: 0.06em;
-  padding: 3px 9px;
-  border-radius: 6px;
-  color: #fff;
-  background: rgba(12, 16, 22, 0.82);
-  -webkit-backdrop-filter: blur(4px);
-  backdrop-filter: blur(4px);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  padding: 2px 8px;
+  border-radius: 5px;
+  background: color-mix(in srgb, currentColor 14%, transparent);
+  border: 1px solid color-mix(in srgb, currentColor 32%, transparent);
   white-space: nowrap;
 }
-.ribbon-neurips { color: #cbbcff; }
-.ribbon-wacv    { color: #a8d0f8; }
-.ribbon-journal { color: #8ae4c8; }
-.ribbon-arxiv   { color: #ffbe96; }
+.ribbon-neurips { color: var(--v-neurips); }
+.ribbon-wacv    { color: var(--v-wacv); }
+.ribbon-journal { color: var(--v-journal); }
+.ribbon-arxiv   { color: var(--v-arxiv); }
 
 /* -------------------------- publications --------------------------- */
 
