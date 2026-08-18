@@ -21,7 +21,7 @@
   <!-- The stylesheet carries the same ?v= as the scripts. It was once the
        only asset without one, so browsers kept serving a cached copy and new
        rules silently never arrived. Bump it with the scripts. -->
-  <link rel="stylesheet" href="css/style.css?v=26">
+  <link rel="stylesheet" href="css/style.css?v=27">
 </head>
 <body>
 
@@ -35,8 +35,8 @@
         <a href="#experience" data-i18n="nav.exp">Experience</a>
         <select id="lang-select" aria-label="Language">
           <option value="en">EN</option>
-          <option value="zh">中文</option>
           <option value="ja">日本語</option>
+          <option value="zh">中文</option>
         </select>
         <button id="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">◐</button>
       </div>
@@ -102,11 +102,13 @@
       <h2 data-i18n="news.title">News</h2>
       <ul class="news-list">
         <li><time data-i18n="news.1.t">Apr 2026</time><span data-i18n="news.1.b">Joined <strong>SB Intuitions</strong> as a Research Scientist, working on Responsible AI.</span></li>
-        <!-- keyed news.phd rather than news.2 so the numbered items below keep their keys -->
+        <!-- The keys are labels, not positions: news.phd was inserted rather
+             than renumbering everything under it, and news.2 (ILD-Slider) and
+             news.4 (E-InMeMo) have since been removed, so the numbering has
+             gaps. Leave them. Renumbering to close a gap only silently
+             reassigns every translation in js/i18n.js to the wrong item. -->
         <li><time data-i18n="news.phd.t">Mar 2026</time><span data-i18n="news.phd.b">Completed my <strong>Ph.D.</strong> at The University of Osaka.</span></li>
-        <li><time data-i18n="news.2.t">Oct 2025</time><span data-i18n="news.2.b"><em>ILD-Slider</em> is published in the <em>Journal of Imaging</em>.</span></li>
         <li><time data-i18n="news.3.t">Sep 2025</time><span data-i18n="news.3.b"><em>PANICL</em> is now on arXiv.</span></li>
-        <li><time data-i18n="news.4.t">Jul 2025</time><span data-i18n="news.4.b"><em>E-InMeMo</em> is published in the <em>Journal of Imaging</em>.</span></li>
         <li><time data-i18n="news.5.t">Sep 2024</time><span data-i18n="news.5.b"><em>DiReCT</em> is accepted at NeurIPS 2024 (Datasets &amp; Benchmarks Track).</span></li>
         <li><time data-i18n="news.6.t">Oct 2023</time><span data-i18n="news.6.b"><em>InMeMo</em> is accepted at WACV 2024.</span></li>
       </ul>
@@ -458,9 +460,9 @@
 
   <!-- ?v= is a cache buster: bump it whenever a script or the sprite sheet
        changes shape, so a browser cannot pair new art with a stale script -->
-  <script src="js/main.js?v=26"></script>
-  <script src="js/i18n.js?v=26"></script>
-  <script src="js/vegeta.js?v=26"></script>
-  <script src="js/telemetry.js?v=26"></script>
+  <script src="js/main.js?v=27"></script>
+  <script src="js/i18n.js?v=27"></script>
+  <script src="js/vegeta.js?v=27"></script>
+  <script src="js/telemetry.js?v=27"></script>
 </body>
 </html>

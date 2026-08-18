@@ -36,9 +36,7 @@
       "news.title": "动态",
       "news.1.t": "2026.04", "news.1.b": "加入 <strong>SB Intuitions</strong>，担任 Research Scientist，从事 Responsible AI 的研究与开发。",
       "news.phd.t": "2026.03", "news.phd.b": "于大阪大学取得<strong>博士学位</strong>。",
-      "news.2.t": "2025.10", "news.2.b": "<em>ILD-Slider</em> 发表于 <em>Journal of Imaging</em>。",
       "news.3.t": "2025.09", "news.3.b": "<em>PANICL</em> 已公开于 arXiv。",
-      "news.4.t": "2025.07", "news.4.b": "<em>E-InMeMo</em> 发表于 <em>Journal of Imaging</em>。",
       "news.5.t": "2024.09", "news.5.b": "<em>DiReCT</em> 被 NeurIPS 2024（Datasets &amp; Benchmarks Track）接收。",
       "news.6.t": "2023.10", "news.6.b": "<em>InMeMo</em> 被 WACV 2024 接收。",
 
@@ -127,9 +125,7 @@
       "news.title": "ニュース",
       "news.1.t": "2026.04", "news.1.b": "<strong>SB Intuitions</strong> にリサーチサイエンティストとして入社。Responsible AI の研究開発に従事。",
       "news.phd.t": "2026.03", "news.phd.b": "大阪大学にて<strong>博士号</strong>を取得。",
-      "news.2.t": "2025.10", "news.2.b": "<em>ILD-Slider</em> が <em>Journal of Imaging</em> に掲載されました。",
       "news.3.t": "2025.09", "news.3.b": "<em>PANICL</em> を arXiv で公開しました。",
-      "news.4.t": "2025.07", "news.4.b": "<em>E-InMeMo</em> が <em>Journal of Imaging</em> に掲載されました。",
       "news.5.t": "2024.09", "news.5.b": "<em>DiReCT</em> が NeurIPS 2024（Datasets &amp; Benchmarks Track）に採択されました。",
       "news.6.t": "2023.10", "news.6.b": "<em>InMeMo</em> が WACV 2024 に採択されました。",
 
