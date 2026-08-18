@@ -30,7 +30,7 @@
 
   // The ?v= must be bumped together with the sheet, otherwise browsers keep
   // serving the previously cached PNG (that is what hid his legs).
-  var SPRITE_VERSION = "25";
+  var SPRITE_VERSION = "26";
   var SPRITE_URL = "images/vegeta.png?v=" + SPRITE_VERSION;
   // Keep SCALE a whole number. At 1.5 the sheet was drawn at 48 and shown at
   // 72, so every other source pixel came out twice as wide as its neighbour
@@ -497,9 +497,12 @@
 
   /* ---------------------------- clicks ----------------------------- */
 
+  /*  .tele-panel is in here because the footer telemetry panel is a thing
+      you read and point at, and taking a Big Bang Attack to the country
+      list every time you tap it is not the intent. */
   function isInteractive(el) {
     return !!(el && el.closest &&
-      el.closest("a, button, input, textarea, select, label, summary"));
+      el.closest("a, button, input, textarea, select, label, summary, .tele-panel"));
   }
 
   function onClick(e) {

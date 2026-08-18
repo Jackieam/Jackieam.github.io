@@ -895,21 +895,152 @@ a.lk:hover {
 }
 .footer > p { margin: 0; }
 
-/* tiny visit counter tucked into the footer corner */
+/* Tiny visit counter tucked into the footer corner, and the panel of
+   where those visits came from that it opens. The panel is absolutely
+   positioned above the row on purpose: the footer is the last thing on
+   the page, so a panel that took up flow would grow the document and
+   scroll the ground out from under the click that opened it. */
 .telemetry {
   flex: 0 0 auto;
+  position: relative;
+  font-size: 0.7rem;
+  color: var(--ink-faint);
+}
+
+.tele-row {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.7rem;
-  color: var(--ink-faint);
+  margin: 0;
+  padding: 2px 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
   opacity: 0.7;
   white-space: nowrap;
   transition: opacity 0.2s;
 }
-.telemetry:hover { opacity: 1; }
+.tele-row:hover,
+.telemetry.open .tele-row { opacity: 1; }
 #tele-globe { color: var(--accent); display: block; opacity: 0.75; }
 #tele-count { font-variant-numeric: tabular-nums; color: var(--ink-soft); }
+.tele-caret {
+  color: var(--accent);
+  font-size: 0.8em;
+  line-height: 1;
+  transition: transform 0.2s;
+}
+.telemetry.open .tele-caret { transform: rotate(180deg); }
+
+.tele-panel {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 10px);
+  z-index: 20;
+  width: 320px;
+  max-width: 80vw;
+  padding: 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--line-bright);
+  border-radius: 10px;
+  box-shadow: var(--card-shadow);
+  text-align: left;
+  cursor: default;
+}
+.tele-panel[hidden] { display: none; }
+
+.tele-head { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+#tele-map { flex: 0 0 auto; opacity: 0.9; }
+.tele-title {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.tele-sub { display: block; margin-top: 2px; color: var(--ink-soft); font-size: 0.74rem; }
+#tele-nc { font-variant-numeric: tabular-nums; }
+
+.tele-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 176px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.tele-empty { color: var(--ink-faint); font-size: 0.72rem; }
+.tele-item {
+  display: grid;
+  grid-template-columns: 1.4em minmax(0, 1fr) 54px 2.6em;
+  align-items: center;
+  gap: 7px;
+  padding: 2.5px 0;
+  font-size: 0.72rem;
+  line-height: 1.45;
+}
+.tele-flag { font-size: 0.95em; }
+.tele-name {
+  color: var(--ink-soft);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.tele-item.you .tele-name { color: var(--ink); }
+.tele-you {
+  margin-left: 5px;
+  padding: 0 4px;
+  border: 1px solid var(--accent);
+  border-radius: 3px;
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 0.82em;
+}
+.tele-bar {
+  display: block;
+  height: 4px;
+  background: var(--line);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.tele-bar i {
+  display: block;
+  height: 100%;
+  border-radius: 2px;
+  background: var(--accent-2);
+}
+.tele-item.you .tele-bar i { background: var(--accent); }
+.tele-n {
+  text-align: right;
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-soft);
+}
+
+/* The roster is asked for in waves so the free counter's rate limit is
+   not tripped — this says so rather than letting the list look finished
+   while rows are still arriving. */
+.tele-scan {
+  margin: 9px 0 0;
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  color: var(--accent);
+  animation: tele-blink 1.6s ease-in-out infinite;
+}
+@keyframes tele-blink { 0%, 100% { opacity: 0.35; } 50% { opacity: 0.9; } }
+
+.tele-note {
+  margin: 10px 0 0;
+  padding-top: 9px;
+  border-top: 1px solid var(--line);
+  font-size: 0.64rem;
+  line-height: 1.55;
+  color: var(--ink-faint);
+}
 
 /* ---------------------------- mid widths --------------------------- */
 /* Between the stacking breakpoint and the full page width there is not
@@ -943,6 +1074,8 @@ a.lk:hover {
   .cv-when { flex-basis: 100px; }
   .topnav-links { gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
   .footer { flex-direction: column; align-items: flex-start; gap: 14px; }
+  /* the row moves to the left edge down here, so the panel hangs off it */
+  .tele-panel { right: auto; left: 0; }
 }
 
 
@@ -964,6 +1097,9 @@ a.lk:hover {
   .vg-beam.on { animation: none; }
 
   .vg-bolts { display: none; }              /* flickering arcs, nothing but motion */
+
+  /* the telemetry panel's "scanning…" pulse — say it in colour, not motion */
+  .tele-scan { animation: none; opacity: 0.8; }
 
   /* the detonation flash stays, as a fade rather than a scale-up */
   .vg-boom {

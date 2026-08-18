@@ -21,7 +21,7 @@
   <!-- The stylesheet carries the same ?v= as the scripts. It was once the
        only asset without one, so browsers kept serving a cached copy and new
        rules silently never arrived. Bump it with the scripts. -->
-  <link rel="stylesheet" href="css/style.css?v=25">
+  <link rel="stylesheet" href="css/style.css?v=26">
 </head>
 <body>
 
@@ -428,19 +428,39 @@
         <a href="#" id="pet-toggle">Turn it off</a> ·
         <span data-i18n="footer.credit">Sprite drawn by hand; fan art, all Dragon Ball rights to their owners.</span>
       </p>
-      <p class="telemetry" id="telemetry" title="Page loads since Aug 2026">
-        <canvas id="tele-globe" width="26" height="26" aria-hidden="true"></canvas>
-        <span id="tele-count">…</span><span data-i18n="tele.visits">&nbsp;visits</span>
-      </p>
+      <!-- Visit counter, and behind it where those visits came from. The
+           panel is markup rather than something js/telemetry.js builds so
+           that js/i18n.js can pick its labels up in the same snapshot as
+           the rest of the page; only the country rows are built in JS. -->
+      <div class="telemetry" id="telemetry">
+        <div class="tele-panel" id="tele-panel" hidden>
+          <div class="tele-head">
+            <canvas id="tele-map" width="120" height="120" aria-hidden="true"></canvas>
+            <div>
+              <span class="tele-title" data-i18n="tele.origins">Visitor origins</span>
+              <span class="tele-sub"><span id="tele-nc">…</span><span data-i18n="tele.countries">&nbsp;countries</span></span>
+            </div>
+          </div>
+          <ol class="tele-list" id="tele-list"><li class="tele-empty">…</li></ol>
+          <p class="tele-scan" id="tele-scan" data-i18n="tele.scan" hidden>scanning…</p>
+          <p class="tele-note" data-i18n="tele.note">Only the country each visit came from, counted in aggregate. No IP, no city, no cookie, nothing per-visit.</p>
+        </div>
+        <button type="button" class="tele-row" id="tele-toggle" aria-expanded="false"
+                aria-controls="tele-panel" title="Page loads since Aug 2026 — open for the country breakdown">
+          <canvas id="tele-globe" width="26" height="26" aria-hidden="true"></canvas>
+          <span id="tele-count">…</span><span data-i18n="tele.visits">&nbsp;visits</span>
+          <span class="tele-caret" aria-hidden="true">▾</span>
+        </button>
+      </div>
     </footer>
 
   </main>
 
   <!-- ?v= is a cache buster: bump it whenever a script or the sprite sheet
        changes shape, so a browser cannot pair new art with a stale script -->
-  <script src="js/main.js?v=25"></script>
-  <script src="js/i18n.js?v=25"></script>
-  <script src="js/vegeta.js?v=25"></script>
-  <script src="js/telemetry.js?v=25"></script>
+  <script src="js/main.js?v=26"></script>
+  <script src="js/i18n.js?v=26"></script>
+  <script src="js/vegeta.js?v=26"></script>
+  <script src="js/telemetry.js?v=26"></script>
 </body>
 </html>

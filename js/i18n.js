@@ -12,9 +12,15 @@
   "use strict";
 
   var DICT = {
+    /*  English normally lives in the HTML and is snapshotted from it, so
+        this block only needs the strings that no element carries — the
+        ones js/telemetry.js and js/vegeta.js build at runtime. */
     en: {
       "pet.off": "Turn it off",
-      "pet.on": "Turn it on"
+      "pet.on": "Turn it on",
+
+      "tele.you": "you",
+      "tele.none": "no country data yet"
     },
 
     zh: {
@@ -99,7 +105,13 @@
       "vg.back": "哼。用不着那么惊讶。",
       "vg.blocked": "护盾？…… 哼，有点意思。",
 
-      "tele.visits": "&nbsp;次访问"
+      "tele.visits": "&nbsp;次访问",
+      "tele.origins": "访客来源",
+      "tele.countries": "&nbsp;个国家 / 地区",
+      "tele.scan": "扫描中…",
+      "tele.you": "你",
+      "tele.none": "暂无国家数据",
+      "tele.note": "只按国家 / 地区汇总统计访问来源。不记录 IP、城市、Cookie，也不保存任何单次访问的记录。"
     },
 
     ja: {
@@ -184,7 +196,13 @@
       "vg.back": "フン。そんなに驚くな。",
       "vg.blocked": "バリアだと？…… フン、面白い。",
 
-      "tele.visits": "&nbsp;アクセス"
+      "tele.visits": "&nbsp;アクセス",
+      "tele.origins": "アクセス元",
+      "tele.countries": "&nbsp;か国・地域",
+      "tele.scan": "スキャン中…",
+      "tele.you": "あなた",
+      "tele.none": "国・地域のデータはまだありません",
+      "tele.note": "アクセス元の国・地域だけを集計しています。IP・都市・Cookie は記録せず、個々のアクセスも保存しません。"
     }
   };
 
