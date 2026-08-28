@@ -281,7 +281,8 @@
 
   /* ------------------------ portrait barrier ----------------------- */
   /* Shots aimed at the portrait are stopped at its barrier instead of
-     landing. `blocked` is set once per attack in onClick and cleared in
+     landing. The barrier draws nothing on screen — #shield is an invisible
+     collision box — but the interception below is unchanged. `blocked` is set once per attack in onClick and cleared in
      rest(), which is the single place a move is allowed to end — so it
      cannot leak into the next shot. */
 
@@ -317,12 +318,15 @@
     return { x: ox + dx * enter, y: oy + dy * enter, el: el };
   }
 
-  /** light the band and drop a ripple where the shot struck it */
+  /** drop a ripple where the shot struck the barrier */
   function barrierHit(px, py) {
     var el = document.getElementById("shield");
     if (!el) return;
-    // The ripple goes on the figure, not inside .shield: the band is drawn
-    // with a mask, and a child would inherit it and be sliced off as it grew.
+    // The ripple is appended to the figure rather than to .shield, so it is
+    // positioned against the photo and can expand past the barrier's box.
+    // The barrier itself is invisible, so this ripple and the line below are
+    // the only things telling the reader the shot was stopped rather than
+    // swallowed — do not drop them.
     var host = el.parentNode || el;
     var r = host.getBoundingClientRect();
     var ping = document.createElement("span");
@@ -330,9 +334,7 @@
     ping.style.left = (px - r.left) + "px";
     ping.style.top = (py - r.top) + "px";
     host.appendChild(ping);
-    el.classList.add("hit");
     setTimeout(function () { ping.remove(); }, 700);
-    setTimeout(function () { el.classList.remove("hit"); }, 900);
     say(t("vg.blocked", "A barrier?! ... Hmph. Clever."), 1700);
   }
 

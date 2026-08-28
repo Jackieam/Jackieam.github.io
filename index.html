@@ -21,7 +21,7 @@
   <!-- The stylesheet carries the same ?v= as the scripts. It was once the
        only asset without one, so browsers kept serving a cached copy and new
        rules silently never arrived. Bump it with the scripts. -->
-  <link rel="stylesheet" href="css/style.css?v=27">
+  <link rel="stylesheet" href="css/style.css?v=28">
 </head>
 <body>
 
@@ -89,8 +89,11 @@
           </li>
         </ul>
       </div>
-      <!-- The barrier is markup rather than JS-injected so it is still there
-           if the mascot is switched off; js/vegeta.js only lights it up. -->
+      <!-- #shield draws nothing — it is the barrier's collision box, and
+           js/vegeta.js reads its rect to stop blasts aimed at the photo.
+           Removing it (or hiding it with display:none) turns the barrier
+           off silently. It is markup rather than JS-injected so it is still
+           there if the mascot is switched off. -->
       <figure class="hero-photo">
         <img src="images/portrait-2026.jpg?v=3" alt="Portrait of Jiahao Zhang" width="232" height="302">
         <span class="shield" id="shield" aria-hidden="true"></span>
@@ -460,9 +463,9 @@
 
   <!-- ?v= is a cache buster: bump it whenever a script or the sprite sheet
        changes shape, so a browser cannot pair new art with a stale script -->
-  <script src="js/main.js?v=27"></script>
-  <script src="js/i18n.js?v=27"></script>
-  <script src="js/vegeta.js?v=27"></script>
-  <script src="js/telemetry.js?v=27"></script>
+  <script src="js/main.js?v=28"></script>
+  <script src="js/i18n.js?v=28"></script>
+  <script src="js/vegeta.js?v=28"></script>
+  <script src="js/telemetry.js?v=28"></script>
 </body>
 </html>
