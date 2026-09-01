@@ -112,8 +112,7 @@ main {
    and letting just those run full width gives the page a deliberate rhythm
    rather than one uniformly over-stretched column. */
 .hero-text p,
-.section-note,
-.feat-desc { max-width: var(--measure); }
+.section-note { max-width: var(--measure); }
 
 .news-list,
 .cv-list { max-width: var(--measure-list); }
@@ -404,7 +403,18 @@ h1, h2, h3, h4 { font-family: var(--display); }
   display: block;
 }
 
-.feat-body { min-width: 0; flex: 1; }
+/* The measure sits on the whole text column, not on the summary alone.
+   When only .feat-desc carried it, the h3 and the author line kept running
+   to the full column width, so a long author list (DiReCT) or a long title
+   (PANICL) overhung the summary by 30-50px and each card ended in a ragged
+   right edge. Capping the parent gives all three one edge.
+
+   Why the 0.9: --measure is 68ch, and ch resolves against the element's own
+   font-size. .feat-desc is 0.9rem, so its 68ch was narrower than 68ch here
+   at 1rem. ch scales linearly with font-size, so multiplying by that same
+   0.9 reproduces the summary's original measure exactly — change this if
+   .feat-desc's font-size changes, or the prose silently gets a new measure. */
+.feat-body { min-width: 0; flex: 1; max-width: calc(var(--measure) * 0.9); }
 
 .feat-body h3 {
   font-size: 1.08rem;
