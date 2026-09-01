@@ -26,6 +26,7 @@
   --v-wacv:    #a8d0f8;
   --v-journal: #8ae4c8;
   --v-arxiv:   #ffbe96;
+  --v-emnlp:   #f7b3cd;
   --display: "Sora", "Inter", system-ui, sans-serif;
   --sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
@@ -59,6 +60,7 @@
   --v-wacv:    #2c5d92;
   --v-journal: #157a60;
   --v-arxiv:   #a8501f;
+  --v-emnlp:   #a3355f;
 }
 
 * { box-sizing: border-box; }
@@ -461,6 +463,7 @@ h1, h2, h3, h4 { font-family: var(--display); }
 .ribbon-wacv    { color: var(--v-wacv); }
 .ribbon-journal { color: var(--v-journal); }
 .ribbon-arxiv   { color: var(--v-arxiv); }
+.ribbon-emnlp   { color: var(--v-emnlp); }
 
 /* -------------------------- publications --------------------------- */
 
@@ -574,10 +577,16 @@ a.lk:hover {
   background: color-mix(in srgb, #3e7fc4 20%, transparent);
   border-color: color-mix(in srgb, #3e7fc4 42%, transparent);
 }
+.lk-page {
+  color: #cbbcff;
+  background: color-mix(in srgb, #7c5cd6 20%, transparent);
+  border-color: color-mix(in srgb, #7c5cd6 42%, transparent);
+}
 :root[data-theme="light"] .lk-arxiv { color: #a8471c; }
 :root[data-theme="light"] .lk-pdf   { color: #4a5765; }
 :root[data-theme="light"] .lk-code  { color: #10715a; }
 :root[data-theme="light"] .lk-paper { color: #23558f; }
+:root[data-theme="light"] .lk-page  { color: #4b32a8; }
 
 /* --------------------- experience / edu / awards ------------------- */
 

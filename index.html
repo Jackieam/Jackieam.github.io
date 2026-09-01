@@ -21,7 +21,7 @@
   <!-- The stylesheet carries the same ?v= as the scripts. It was once the
        only asset without one, so browsers kept serving a cached copy and new
        rules silently never arrived. Bump it with the scripts. -->
-  <link rel="stylesheet" href="css/style.css?v=28">
+  <link rel="stylesheet" href="css/style.css?v=30">
 </head>
 <body>
 
@@ -65,10 +65,18 @@
           <strong>safety and alignment of vision–language models</strong>. I am also interested
           in medical image analysis and AI applications for healthcare.
         </p>
-        <!-- No mailto: here on purpose. A plain address on a public page gets
-             harvested by spam crawlers; LinkedIn carries the contact path
-             instead. If you ever want it back, add an <li> with the address. -->
+        <!-- Email leads the row on purpose: it is the contact path people
+             actually want, and everything after it is a profile link. The
+             address was deliberately withheld here once, to keep it away from
+             spam crawlers — it is public again by choice, so do not "restore"
+             the old no-mailto rule without asking. -->
         <ul class="contact-row">
+          <li>
+            <a href="mailto:zjhambition@gmail.com" title="Email">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              <span>Email</span>
+            </a>
+          </li>
           <li>
             <a href="https://scholar.google.com/citations?user=jRcFD0MAAAAJ" title="Google Scholar">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3 1 8l11 5 9-4.09V17h2V8L12 3zm-5 10.18V17c0 1.66 2.24 3 5 3s5-1.34 5-3v-3.82l-5 2.27-5-2.27z"/></svg>
@@ -104,6 +112,7 @@
     <section id="news" class="section">
       <h2 data-i18n="news.title">News</h2>
       <ul class="news-list">
+        <li><time data-i18n="news.emnlp.t">Aug 2026</time><span data-i18n="news.emnlp.b"><em>Do VLMs Share Safety Neurons Across Modalities?</em> is accepted at <strong>EMNLP 2026</strong> (Main Conference).</span></li>
         <li><time data-i18n="news.1.t">Apr 2026</time><span data-i18n="news.1.b">Joined <strong>SB Intuitions</strong> as a Research Scientist, working on Responsible AI.</span></li>
         <!-- The keys are labels, not positions: news.phd was inserted rather
              than renumbering everything under it, and news.2 (ILD-Slider) and
@@ -121,8 +130,38 @@
     <section id="selected" class="section">
       <h2 data-i18n="sel.title">Selected Recent Work</h2>
       <p class="section-note" data-i18n="sel.note">
-        A closer look at three recent projects. <sup>*</sup> denotes first author.
+        A closer look at four recent projects. <sup>*</sup> denotes (co-)first author.
       </p>
+
+      <article class="feat">
+        <figure class="feat-teaser">
+          <img src="images/teasers/emnlp.jpg" alt="Safety-neuron analysis overview" loading="lazy" width="660" height="440">
+          <figcaption class="ribbon ribbon-emnlp">EMNLP 2026</figcaption>
+        </figure>
+        <div class="feat-body">
+          <p class="topics">
+            <span class="topic" data-i18n="tp.safety">VLM Safety</span>
+            <span class="topic" data-i18n="tp.interp">Interpretability</span>
+          </p>
+          <h3>Do VLMs Share Safety Neurons Across Modalities?</h3>
+          <p class="pub-authors">Jiaxuan Li<sup>*</sup>, <span class="me">Jiahao Zhang</span><sup>*</sup>, Duc Minh Vo, Huy H. Nguyen, Pride Kavumba, Koki Wataoka</p>
+          <p class="feat-desc" data-i18n="sel.safetyneuron">
+            Vision&ndash;language models often comply with a harmful request once it arrives as an
+            image, even when their LLM backbone would refuse the very same words in text. This work
+            traces that gap causally at the neuron level across 10 VLMs, using a two-stage detection
+            pipeline whose iterative ablation accounts for self-repair, plus two modality-isolated
+            benchmarks, ViSafe-Detect and ViSafe-Eval. Text safety turns out to be sharply
+            localizable &mdash; roughly 88 neurons, under 0.01% &mdash; and is the dominant refusal
+            pathway, while visual safety stays diffuse: text safety concentrates in about 5 subspace
+            directions where visual safety needs 50 or more.
+          </p>
+          <p class="pub-links">
+            <a class="lk lk-arxiv" href="https://arxiv.org/abs/2608.30750">arXiv</a>
+            <a class="lk lk-pdf" href="https://arxiv.org/pdf/2608.30750">PDF</a>
+            <a class="lk lk-page" href="https://jiaxuan-li.github.io/vlm-safety-neuron/">Project</a>
+          </p>
+        </div>
+      </article>
 
       <article class="feat">
         <figure class="feat-teaser">
@@ -212,10 +251,26 @@
       <h2 data-i18n="pubs.title">Publications</h2>
       <p class="section-note" data-i18n="pubs.note">
         Selected works; see <a href="https://scholar.google.com/citations?user=jRcFD0MAAAAJ">Google Scholar</a>
-        for the full list. <sup>*</sup> denotes first author.
+        for the full list. <sup>*</sup> denotes (co-)first author.
       </p>
 
       <h3 class="pub-group" data-i18n="pubs.conf">International Conferences</h3>
+
+      <article class="pub">
+        <figure class="pub-teaser">
+          <img src="images/teasers/emnlp.jpg" alt="Safety-neuron analysis overview" loading="lazy" width="660" height="440">
+          <figcaption class="ribbon ribbon-emnlp">EMNLP 2026</figcaption>
+        </figure>
+        <div class="pub-body">
+          <h4>Do VLMs Share Safety Neurons Across Modalities?</h4>
+          <p class="pub-authors">Jiaxuan Li<sup>*</sup>, <span class="me">Jiahao Zhang</span><sup>*</sup>, Duc Minh Vo, Huy H. Nguyen, Pride Kavumba, Koki Wataoka</p>
+          <p class="pub-links">
+            <a class="lk lk-arxiv" href="https://arxiv.org/abs/2608.30750">arXiv</a>
+            <a class="lk lk-pdf" href="https://arxiv.org/pdf/2608.30750">PDF</a>
+            <a class="lk lk-page" href="https://jiaxuan-li.github.io/vlm-safety-neuron/">Project</a>
+          </p>
+        </div>
+      </article>
 
       <article class="pub">
         <figure class="pub-teaser">
@@ -426,6 +481,26 @@
     </section>
 
 
+    <!-- ===================== Academic activities ===================== -->
+    <!-- Same two-column cv-list as Experience/Awards, so the left column is
+         normally a date. Reviewing has no single date, so its left cell
+         carries the role instead of a year; that is deliberate, not a
+         placeholder waiting for a date. -->
+    <section id="activities" class="section">
+      <h2 data-i18n="act.title">Academic Activities</h2>
+      <ul class="cv-list">
+        <li>
+          <div class="cv-when" data-i18n="act.sanken.when">Nov 2025</div>
+          <div class="cv-what" data-i18n="act.sanken.what"><strong>Poster Presentation</strong>, <a href="https://www.sanken.osaka-u.ac.jp/gakujutu/81/">81st SANKEN Academic Lecture Meeting</a>, SANKEN (Institute of Scientific and Industrial Research), The University of Osaka, Japan</div>
+        </li>
+        <li>
+          <div class="cv-when" data-i18n="act.rev.when">Reviewer</div>
+          <div class="cv-what" data-i18n="act.rev.what">IJCV, NeurIPS, CVPR, ECCV, ACL ARR, AAAI, BMVC, ACCV</div>
+        </li>
+      </ul>
+    </section>
+
+
     <footer class="footer">
       <p>
         © <span id="year">2026</span> Jiahao Zhang ·
@@ -443,15 +518,15 @@
             <canvas id="tele-map" width="120" height="120" aria-hidden="true"></canvas>
             <div>
               <span class="tele-title" data-i18n="tele.origins">Visitor origins</span>
-              <span class="tele-sub"><span id="tele-nc">…</span><span data-i18n="tele.countries">&nbsp;countries</span></span>
+              <span class="tele-sub"><span id="tele-nc">…</span><span data-i18n="tele.countries">&nbsp;countries/regions</span></span>
             </div>
           </div>
           <ol class="tele-list" id="tele-list"><li class="tele-empty">…</li></ol>
           <p class="tele-scan" id="tele-scan" data-i18n="tele.scan" hidden>scanning…</p>
-          <p class="tele-note" data-i18n="tele.note">Only the country each visit came from, counted in aggregate. No IP, no city, no cookie, nothing per-visit.</p>
+          <p class="tele-note" data-i18n="tele.note">Only the country or region each visit came from, counted in aggregate. No IP, no city, no cookie, nothing per-visit.</p>
         </div>
         <button type="button" class="tele-row" id="tele-toggle" aria-expanded="false"
-                aria-controls="tele-panel" title="Page loads since Aug 2026 — open for the country breakdown">
+                aria-controls="tele-panel" title="Page loads since Aug 2026 — open for the country/region breakdown">
           <canvas id="tele-globe" width="26" height="26" aria-hidden="true"></canvas>
           <span id="tele-count">…</span><span data-i18n="tele.visits">&nbsp;visits</span>
           <span class="tele-caret" aria-hidden="true">▾</span>
@@ -463,9 +538,9 @@
 
   <!-- ?v= is a cache buster: bump it whenever a script or the sprite sheet
        changes shape, so a browser cannot pair new art with a stale script -->
-  <script src="js/main.js?v=28"></script>
-  <script src="js/i18n.js?v=28"></script>
-  <script src="js/vegeta.js?v=28"></script>
-  <script src="js/telemetry.js?v=28"></script>
+  <script src="js/main.js?v=30"></script>
+  <script src="js/i18n.js?v=30"></script>
+  <script src="js/vegeta.js?v=30"></script>
+  <script src="js/telemetry.js?v=30"></script>
 </body>
 </html>

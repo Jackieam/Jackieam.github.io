@@ -278,7 +278,7 @@
     if (!order.length) {
       var empty = document.createElement("li");
       empty.className = "tele-empty";
-      empty.textContent = scanned ? t("tele.none", "no country data yet") : "…";
+      empty.textContent = scanned ? t("tele.none", "no country/region data yet") : "…";
       listEl.appendChild(empty);
     } else {
       var max = counts[order[0]];
