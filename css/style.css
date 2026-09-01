@@ -28,6 +28,15 @@
   --v-journal: #8ae4c8;
   --v-arxiv:   #ffbe96;
   --v-emnlp:   #f7b3cd;
+  /* Link-badge text. These live here, not in a [data-theme="light"] rule:
+     such a rule only fires when the ◐ toggle has stamped the attribute, so a
+     visitor whose OS asks for light kept the dark values and the badges went
+     pale-on-pale. Anything theme-dependent belongs in these palettes. */
+  --lk-arxiv:  #ffb08a;
+  --lk-pdf:    #cfd8e3;
+  --lk-code:   #8ae4c8;
+  --lk-paper:  #a8d0f8;
+  --lk-page:   #cbbcff;
   --display: "Sora", "Inter", system-ui, sans-serif;
   --sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
@@ -75,6 +84,11 @@
     --v-journal: #157a60;
     --v-arxiv:   #a8501f;
     --v-emnlp:   #a3355f;
+    --lk-arxiv:  #a8471c;
+    --lk-pdf:    #4a5765;
+    --lk-code:   #10715a;
+    --lk-paper:  #23558f;
+    --lk-page:   #4b32a8;
   }
 }
 
@@ -97,6 +111,11 @@
   --v-journal: #157a60;
   --v-arxiv:   #a8501f;
   --v-emnlp:   #a3355f;
+  --lk-arxiv:  #a8471c;
+  --lk-pdf:    #4a5765;
+  --lk-code:   #10715a;
+  --lk-paper:  #23558f;
+  --lk-page:   #4b32a8;
 }
 
 * { box-sizing: border-box; }
@@ -612,35 +631,30 @@ a.lk:hover {
 }
 
 .lk-arxiv {
-  color: #ffb08a;
+  color: var(--lk-arxiv);
   background: color-mix(in srgb, #e2703a 22%, transparent);
   border-color: color-mix(in srgb, #e2703a 45%, transparent);
 }
 .lk-pdf {
-  color: #cfd8e3;
+  color: var(--lk-pdf);
   background: color-mix(in srgb, #8494a8 20%, transparent);
   border-color: color-mix(in srgb, #8494a8 42%, transparent);
 }
 .lk-code {
-  color: #8ae4c8;
+  color: var(--lk-code);
   background: color-mix(in srgb, #23a586 20%, transparent);
   border-color: color-mix(in srgb, #23a586 42%, transparent);
 }
 .lk-paper {
-  color: #a8d0f8;
+  color: var(--lk-paper);
   background: color-mix(in srgb, #3e7fc4 20%, transparent);
   border-color: color-mix(in srgb, #3e7fc4 42%, transparent);
 }
 .lk-page {
-  color: #cbbcff;
+  color: var(--lk-page);
   background: color-mix(in srgb, #7c5cd6 20%, transparent);
   border-color: color-mix(in srgb, #7c5cd6 42%, transparent);
 }
-:root[data-theme="light"] .lk-arxiv { color: #a8471c; }
-:root[data-theme="light"] .lk-pdf   { color: #4a5765; }
-:root[data-theme="light"] .lk-code  { color: #10715a; }
-:root[data-theme="light"] .lk-paper { color: #23558f; }
-:root[data-theme="light"] .lk-page  { color: #4b32a8; }
 
 /* --------------------- experience / edu / awards ------------------- */
 
