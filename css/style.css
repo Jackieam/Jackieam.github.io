@@ -418,6 +418,14 @@ h1, h2, h3, h4 { font-family: var(--display); }
   font-size: 0.9rem;
   line-height: 1.62;
   color: var(--ink-soft);
+  /* Justified, and hyphenation is not optional here: at this measure English
+     without it opens rivers of white space between words. Chrome hyphenates
+     off the lang attribute, which js/i18n.js keeps in step with the picker
+     (en / zh-CN / ja) — so this quietly stops working if that is ever
+     dropped. Only these summaries are justified; the ragged right elsewhere
+     is what keeps the page from reading like a column of newsprint. */
+  text-align: justify;
+  hyphens: auto;
 }
 .feat-desc em { color: var(--ink); font-style: normal; font-weight: 600; }
 
