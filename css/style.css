@@ -538,6 +538,23 @@ h1, h2, h3, h4 { font-family: var(--display); }
 .ribbon-arxiv   { color: var(--v-arxiv); }
 .ribbon-emnlp   { color: var(--v-emnlp); }
 
+/* Conference ribbons link to the venue, so they take the same affordance as
+   the link badges. Journal and preprint ribbons stay plain <span>/<figcaption>
+   and get none of this -- only the anchors are interactive, which is the point:
+   a chip that looks clickable and is not would be worse than an unstyled one.
+   The colour comes from .ribbon-* (a class beats the bare `a` selector), so
+   these do not turn accent-coloured, and the underline is suppressed. */
+a.ribbon { transition: box-shadow 0.15s, transform 0.15s, filter 0.15s; }
+a.ribbon:hover {
+  text-decoration: none;
+  filter: brightness(1.12);
+  box-shadow: 0 0 12px currentColor;
+  transform: translateY(-1px);
+}
+@media (prefers-reduced-motion: reduce) {
+  a.ribbon:hover { transform: none; }
+}
+
 /* -------------------------- publications --------------------------- */
 
 .pub-group {
