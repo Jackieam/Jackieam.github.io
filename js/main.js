@@ -1,26 +1,27 @@
-/* Theme (follows the OS until the ◐ toggle is used, then remembers that
-   choice) + footer year + a tiny console hello. */
+/* Theme (always follows the OS; the ◐ toggle overrides it for the current
+   view only) + footer year + a tiny console hello. */
 
 (function () {
   "use strict";
 
-  /*  Three states, matching the CSS:
-        no stored value  -> no data-theme, and prefers-color-scheme decides
-        "light" / "dark" -> stamped on <html>, beating the OS either way
+  /*  Two states, and only one of them survives a reload:
+        no data-theme  -> prefers-color-scheme decides. Every load starts here.
+        data-theme set -> the toggle's override, for this view only.
 
-      Older builds were dark-by-default and stored "dark" to mean "drop the
-      attribute". Read as an explicit dark choice that is still faithful --
-      the visitor did click their way to dark -- so no migration is needed.
+      The override is deliberately NOT remembered, exactly like the language
+      picker: reloading returns to whatever the OS asks for, so the page can
+      never sit in a theme the machine is not using. Older builds did persist
+      it, so that key is cleared here -- a browser still carrying one would
+      otherwise stay pinned to a stale choice. To make it sticky again, read
+      the key back into dataset.theme and write it in the click handler.
 
       The toggle flips whatever is on screen *now*, which is why it asks the
-      media query rather than just reading the attribute: with no attribute
-      and a light OS the rendered page is light, so one click must go dark.
-      While no attribute is set the OS can change under the page and the CSS
-      follows on its own -- nothing here has to listen for that. */
+      media query rather than only reading the attribute: with no attribute on
+      a light OS the rendered page is light, so one click must go dark. While
+      no attribute is set the OS can change under the page and the CSS follows
+      on its own -- nothing here has to listen for that. */
   var root = document.documentElement;
-  var stored = null;
-  try { stored = localStorage.getItem("theme"); } catch (e) { /* private mode */ }
-  if (stored === "light" || stored === "dark") root.dataset.theme = stored;
+  try { localStorage.removeItem("theme"); } catch (e) { /* private mode */ }
 
   var sysLight = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)");
 
@@ -33,9 +34,7 @@
   var btn = document.getElementById("theme-toggle");
   if (btn) {
     btn.addEventListener("click", function () {
-      var next = showingLight() ? "dark" : "light";
-      root.dataset.theme = next;
-      try { localStorage.setItem("theme", next); } catch (e) { /* private mode */ }
+      root.dataset.theme = showingLight() ? "dark" : "light";
     });
   }
 
