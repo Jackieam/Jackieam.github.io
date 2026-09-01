@@ -11,7 +11,7 @@
   --bg-card: #0d131d;
   --ink: #e7edf4;
   --ink-soft: #96a2b0;
-  --ink-faint: #5d6875;
+  --ink-faint: #6f7c8b;
   --line: #1d2735;
   --line-bright: #2c3b50;
   --accent: #3fd8e8;
@@ -47,7 +47,7 @@
      read than the empty margin it replaced — so the cards and lists take the
      extra width and the prose does not. */
   --page: 1100px;
-  --measure: 68ch;
+  --measure: 64ch;
   /* date-column lists: the measure plus room for the date itself */
   --measure-list: 780px;
 }
@@ -70,18 +70,18 @@
     --bg-card: #ffffff;
     --ink: #131a22;
     --ink-soft: #56636f;
-    --ink-faint: #9aa5b0;
+    --ink-faint: #657482;
     --line: #dce3ea;
     --line-bright: #c5d0dc;
-    --accent: #0b93aa;
-    --accent-2: #6d5bd0;
-    --accent-soft: rgba(11, 147, 170, 0.1);
-    --glow-faint: 0 0 8px rgba(11, 147, 170, 0.12);
+    --accent: #09788a;
+    --accent-2: #6552ce;
+    --accent-soft: rgba(9, 120, 138, 0.1);
+    --glow-faint: 0 0 8px rgba(9, 120, 138, 0.12);
     --grid: rgba(30, 60, 90, 0.05);
     --card-shadow: 0 10px 28px rgba(25, 40, 60, 0.1);
     --v-neurips: #5b46a8;
     --v-wacv:    #2c5d92;
-    --v-journal: #157a60;
+    --v-journal: #147159;
     --v-arxiv:   #a8501f;
     --v-emnlp:   #a3355f;
     --lk-arxiv:  #a8471c;
@@ -97,18 +97,18 @@
   --bg-card: #ffffff;
   --ink: #131a22;
   --ink-soft: #56636f;
-  --ink-faint: #9aa5b0;
+  --ink-faint: #657482;
   --line: #dce3ea;
   --line-bright: #c5d0dc;
-  --accent: #0b93aa;
-  --accent-2: #6d5bd0;
-  --accent-soft: rgba(11, 147, 170, 0.1);
-  --glow-faint: 0 0 8px rgba(11, 147, 170, 0.12);
+  --accent: #09788a;
+  --accent-2: #6552ce;
+  --accent-soft: rgba(9, 120, 138, 0.1);
+  --glow-faint: 0 0 8px rgba(9, 120, 138, 0.12);
   --grid: rgba(30, 60, 90, 0.05);
   --card-shadow: 0 10px 28px rgba(25, 40, 60, 0.1);
   --v-neurips: #5b46a8;
   --v-wacv:    #2c5d92;
-  --v-journal: #157a60;
+  --v-journal: #147159;
   --v-arxiv:   #a8501f;
   --v-emnlp:   #a3355f;
   --lk-arxiv:  #a8471c;
@@ -572,17 +572,13 @@ h1, h2, h3, h4 { font-family: var(--display); }
   .pub, .pub:hover { transform: none; }
 }
 
-.pub-teaser { flex: 0 0 232px; margin: 0; position: relative; }
-.pub-teaser img {
-  width: 232px;
-  height: 155px;
-  object-fit: cover;
-  border: 1px solid var(--line-bright);
-  border-radius: 9px;
-  background: #fff;
-  display: block;
-}
-
+/* Publication rows carry no teaser. The four papers worth a figure are shown
+   large in Selected Recent Work above; repeating the same images here put
+   every figure on the page twice and pinned each row to the image's height,
+   leaving 51-100px of empty space beside three lines of text. The row is the
+   citable record, so it stays complete -- #publications is a landing target
+   (the nav, the legacy /publications redirect and the canonical all point at
+   it) and must never be a subset of what is above. */
 .pub-body { min-width: 0; }
 
 .pub h4 {
@@ -595,12 +591,16 @@ h1, h2, h3, h4 { font-family: var(--display); }
 .pub-authors {
   margin: 0 0 5px;
   font-size: 0.88rem;
-  color: var(--ink-faint);
+  color: var(--ink-soft);
 }
 .pub-authors .me { color: var(--ink); font-weight: 700; }
-.pub-authors sup { color: var(--ink-faint); }
+.pub-authors sup { color: var(--ink-soft); }
 
 /* ---- link badges (shields.io-style, but CSS-native) ---- */
+
+/* The venue rides in this row now, so it must not carry the caption's
+   top margin or it sits a step below the badges beside it. */
+.pub-links .ribbon { margin-top: 0; }
 
 .pub-links {
   margin: 10px 0 0;
@@ -1105,8 +1105,6 @@ a.lk:hover {
   .hero-photo img { width: 200px; height: 260px; }
   .feat-teaser { flex-basis: 260px; }
   .feat-teaser img { width: 260px; height: 173px; }
-  .pub-teaser { flex-basis: 190px; }
-  .pub-teaser img { width: 190px; height: 127px; }
 }
 
 
@@ -1117,8 +1115,8 @@ a.lk:hover {
   .hero-photo img { width: 150px; height: 195px; }
   .pub, .feat { flex-direction: column; gap: 12px; }
   .feat { padding: 18px; }
-  .pub-teaser, .feat-teaser { flex-basis: auto; width: 100%; }
-  .pub-teaser img, .feat-teaser img {
+  .feat-teaser { flex-basis: auto; width: 100%; }
+  .feat-teaser img {
     width: 100%; max-width: 360px; height: auto; aspect-ratio: 3 / 2;
   }
   .news-list time { flex-basis: 74px; }
