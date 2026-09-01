@@ -5,8 +5,8 @@
 /*  dictionaries below only hold the zh/ja overrides, keyed by the      */
 /*  data-i18n attribute. Missing keys fall back to English.             */
 /*  Publication titles and author lists stay in English on purpose.     */
-/*  Every load starts in English; the picker switches for that visit    */
-/*  only, and is deliberately not remembered. <html lang> follows.      */
+/*  Defaults to English; a chosen language persists in localStorage     */
+/*  ("lang") and survives a reload. <html lang> follows.                */
 /* ------------------------------------------------------------------ */
 
 (function () {
@@ -244,24 +244,29 @@
     els.forEach(function (el) { el.innerHTML = t(el.getAttribute("data-i18n")); });
     var sel = document.getElementById("lang-select");
     if (sel) sel.value = current;
+    try { localStorage.setItem("lang", current); } catch (e) { /* private mode */ }
     document.dispatchEvent(new CustomEvent("sitelang"));
   }
 
   window.siteI18n = { t: t, apply: apply };
 
-  /*  The page always opens in English, so what a first-time reader sees
-      never depends on what some earlier visit happened to click. The picker
-      still switches the page for as long as the visitor stays on it. To make
-      it sticky again, write the language in apply() and restore it here.
+  /*  English is the default: a first-time reader always lands on it, since
+      nothing is stored yet. Choosing 中文 or 日本語 is remembered and survives
+      a reload -- unlike the ◐ theme override, which resets every load because
+      the OS is the authority there. A language has no such external source of
+      truth, so the visitor's own pick is the only thing to go on.
 
-      sel.value is pinned rather than assumed: Firefox restores <select>
-      state across a reload, which would otherwise leave the picker reading
-      中文 above English content. The key older builds wrote is cleared too,
-      so a browser still carrying one is not left stuck in zh/ja. */
+      Only "zh"/"ja" replay: a stored "en" needs no work and is left to fall
+      through to the English already in the HTML.
+
+      The else branch is not redundant. Firefox restores <select> state across
+      a reload, so without pinning the value the picker could read 中文 above
+      English content. apply() sets it in the other branch. */
   var sel = document.getElementById("lang-select");
-  if (sel) {
-    sel.value = "en";
-    sel.addEventListener("change", function () { apply(sel.value); });
-  }
-  try { localStorage.removeItem("lang"); } catch (e) { /* private mode */ }
+  if (sel) sel.addEventListener("change", function () { apply(sel.value); });
+
+  var stored = null;
+  try { stored = localStorage.getItem("lang"); } catch (e) { /* private mode */ }
+  if (stored === "zh" || stored === "ja") apply(stored);
+  else if (sel) sel.value = "en";
 })();
