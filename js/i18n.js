@@ -5,7 +5,8 @@
 /*  dictionaries below only hold the zh/ja overrides, keyed by the      */
 /*  data-i18n attribute. Missing keys fall back to English.             */
 /*  Publication titles and author lists stay in English on purpose.     */
-/*  Choice persists in localStorage ("lang"); <html lang> follows.      */
+/*  Every load starts in English; the picker switches for that visit    */
+/*  only, and is deliberately not remembered. <html lang> follows.      */
 /* ------------------------------------------------------------------ */
 
 (function () {
@@ -243,16 +244,24 @@
     els.forEach(function (el) { el.innerHTML = t(el.getAttribute("data-i18n")); });
     var sel = document.getElementById("lang-select");
     if (sel) sel.value = current;
-    try { localStorage.setItem("lang", current); } catch (e) { /* private mode */ }
     document.dispatchEvent(new CustomEvent("sitelang"));
   }
 
   window.siteI18n = { t: t, apply: apply };
 
-  var sel = document.getElementById("lang-select");
-  if (sel) sel.addEventListener("change", function () { apply(sel.value); });
+  /*  The page always opens in English, so what a first-time reader sees
+      never depends on what some earlier visit happened to click. The picker
+      still switches the page for as long as the visitor stays on it. To make
+      it sticky again, write the language in apply() and restore it here.
 
-  var stored = null;
-  try { stored = localStorage.getItem("lang"); } catch (e) { /* private mode */ }
-  if (stored === "zh" || stored === "ja") apply(stored);
+      sel.value is pinned rather than assumed: Firefox restores <select>
+      state across a reload, which would otherwise leave the picker reading
+      中文 above English content. The key older builds wrote is cleared too,
+      so a browser still carrying one is not left stuck in zh/ja. */
+  var sel = document.getElementById("lang-select");
+  if (sel) {
+    sel.value = "en";
+    sel.addEventListener("change", function () { apply(sel.value); });
+  }
+  try { localStorage.removeItem("lang"); } catch (e) { /* private mode */ }
 })();

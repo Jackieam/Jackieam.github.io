@@ -8,8 +8,15 @@
   <meta property="og:title" content="Jiahao Zhang">
   <meta property="og:description" content="Research Scientist at SB Intuitions · Ph.D., The University of Osaka.">
   <meta property="og:url" content="https://jackieam.github.io/">
+  <!-- "dark light" = both are supported, and dark is what a browser that
+       reports no preference at all falls back to, which keeps the site's
+       signature look as the neutral case. A visitor whose OS asks for light
+       gets light. theme-color paints the mobile browser's own chrome; it can
+       only follow the OS, not the in-page ◐ toggle, so the two values here
+       mirror --bg in each palette. -->
   <meta name="color-scheme" content="dark light">
-  <meta name="theme-color" content="#0a0e15">
+  <meta name="theme-color" content="#0a0e15" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f6f8fa" media="(prefers-color-scheme: light)">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💥</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,7 +28,7 @@
   <!-- The stylesheet carries the same ?v= as the scripts. It was once the
        only asset without one, so browsers kept serving a cached copy and new
        rules silently never arrived. Bump it with the scripts. -->
-  <link rel="stylesheet" href="css/style.css?v=32">
+  <link rel="stylesheet" href="css/style.css?v=33">
 </head>
 <body>
 
@@ -538,9 +545,9 @@
 
   <!-- ?v= is a cache buster: bump it whenever a script or the sprite sheet
        changes shape, so a browser cannot pair new art with a stale script -->
-  <script src="js/main.js?v=32"></script>
-  <script src="js/i18n.js?v=32"></script>
-  <script src="js/vegeta.js?v=32"></script>
-  <script src="js/telemetry.js?v=32"></script>
+  <script src="js/main.js?v=33"></script>
+  <script src="js/i18n.js?v=33"></script>
+  <script src="js/vegeta.js?v=33"></script>
+  <script src="js/telemetry.js?v=33"></script>
 </body>
 </html>
