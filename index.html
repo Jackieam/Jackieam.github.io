@@ -28,7 +28,7 @@
   <!-- The stylesheet carries the same ?v= as the scripts. It was once the
        only asset without one, so browsers kept serving a cached copy and new
        rules silently never arrived. Bump it with the scripts. -->
-  <link rel="stylesheet" href="css/style.css?v=38">
+  <link rel="stylesheet" href="css/style.css?v=39">
 </head>
 <body>
 
@@ -264,6 +264,9 @@
       <h3 class="pub-group" data-i18n="pubs.conf">International Conferences</h3>
 
       <article class="pub">
+        <figure class="pub-teaser">
+          <img src="images/teasers/emnlp-pub.jpg" alt="Safety-neuron detection pipeline" loading="lazy" width="660" height="440">
+        </figure>
         <div class="pub-body">
           <h4>Do VLMs Share Safety Neurons Across Modalities?</h4>
           <p class="pub-authors">Jiaxuan Li<sup>*</sup>, <span class="me">Jiahao Zhang</span><sup>*</sup>, Duc Minh Vo, Huy H. Nguyen, Pride Kavumba, Koki Wataoka</p>
@@ -277,6 +280,9 @@
       </article>
 
       <article class="pub">
+        <figure class="pub-teaser">
+          <img src="images/teasers/direct-pub.jpg" alt="Clinical diagnosis procedure" loading="lazy" width="660" height="440">
+        </figure>
         <div class="pub-body">
           <h4>DiReCT: Diagnostic Reasoning for Clinical Notes via Large Language Models</h4>
           <p class="pub-authors">Bowen Wang, Jiuyang Chang, Yiming Qian, Guoxin Chen, Junhao Chen, Zhouqiang Jiang, <span class="me">Jiahao Zhang</span>, Yuta Nakashima, Hajime Nagahara</p>
@@ -290,6 +296,9 @@
       </article>
 
       <article class="pub">
+        <figure class="pub-teaser">
+          <img src="images/teasers/inmemo-pub.jpg" alt="InMeMo framework" loading="lazy" width="660" height="440">
+        </figure>
         <div class="pub-body">
           <h4>Instruct Me More! Random Prompting for Visual In-Context Learning</h4>
           <p class="pub-authors"><span class="me">Jiahao Zhang</span><sup>*</sup>, Bowen Wang, Liangzhi Li, Yuta Nakashima, Hajime Nagahara</p>
@@ -306,6 +315,9 @@
       <h3 class="pub-group" data-i18n="pubs.jour">Journal Articles</h3>
 
       <article class="pub">
+        <figure class="pub-teaser">
+          <img src="images/teasers/ildslider.jpg" alt="ILD-Slider overview" loading="lazy" width="660" height="440">
+        </figure>
         <div class="pub-body">
           <h4>ILD-Slider: A Parameter-Efficient Model for Identifying Progressive Fibrosing Interstitial Lung Disease from Chest CT Slices</h4>
           <p class="pub-authors"><span class="me">Jiahao Zhang</span><sup>*</sup>, Shoya Wada, Kento Sugimoto, Takayuki Niitsu, Kiyoharu Fukushima, Hiroshi Kida, Bowen Wang, Shozo Konishi, Katsuki Okada, Yuta Nakashima, Toshihiro Takeda</p>
@@ -318,6 +330,9 @@
       </article>
 
       <article class="pub">
+        <figure class="pub-teaser">
+          <img src="images/teasers/einmemo.jpg" alt="E-InMeMo overview" loading="lazy" width="660" height="440">
+        </figure>
         <div class="pub-body">
           <h4>E-InMeMo: Enhanced Prompting for Visual In-Context Learning</h4>
           <p class="pub-authors"><span class="me">Jiahao Zhang</span><sup>*</sup>, Bowen Wang, Hong Liu, Liangzhi Li, Yuta Nakashima, Hajime Nagahara</p>
@@ -332,6 +347,9 @@
       </article>
 
       <article class="pub">
+        <figure class="pub-teaser">
+          <img src="images/teasers/cmpb.jpg" alt="Chest radiograph annotations" loading="lazy" width="660" height="440">
+        </figure>
         <div class="pub-body">
           <h4>Automatic Creation of Annotations for Chest Radiographs Based on the Positional Information Extracted from Radiographic Image Reports</h4>
           <p class="pub-authors">Bowen Wang, Toshihiro Takeda, Kento Sugimoto, <span class="me">Jiahao Zhang</span>, Shoya Wada, Shozo Konishi, Shirou Manabe, Katsuki Okada, Yasushi Matsumura</p>
@@ -345,6 +363,9 @@
       <h3 class="pub-group" data-i18n="pubs.pre">Preprints</h3>
 
       <article class="pub">
+        <figure class="pub-teaser">
+          <img src="images/teasers/panicl-pub.jpg" alt="PANICL pipeline" loading="lazy" width="660" height="440">
+        </figure>
         <div class="pub-body">
           <h4>PANICL: Mitigating Over-Reliance on Single Prompt in Visual In-Context Learning</h4>
           <p class="pub-authors"><span class="me">Jiahao Zhang</span><sup>*</sup>, Bowen Wang, Hong Liu, Yuta Nakashima, Hajime Nagahara</p>
@@ -356,6 +377,9 @@
       </article>
 
       <article class="pub">
+        <figure class="pub-teaser">
+          <img src="images/teasers/vascar.jpg" alt="VASCAR overview" loading="lazy" width="660" height="440">
+        </figure>
         <div class="pub-body">
           <h4>VASCAR: Content-Aware Layout Generation via Visual-Aware Self-Correction</h4>
           <p class="pub-authors"><span class="me">Jiahao Zhang</span><sup>*</sup>, Ryota Yoshihashi, Shunsuke Kitada, Atsuki Osanai, Yuta Nakashima</p>
@@ -367,6 +391,9 @@
       </article>
 
       <article class="pub">
+        <figure class="pub-teaser">
+          <img src="images/teasers/escouter.jpg" alt="E-SCOUTER overview" loading="lazy" width="660" height="440">
+        </figure>
         <div class="pub-body">
           <h4>Explainable Image Recognition via Enhanced Slot-Attention Based Classifier</h4>
           <p class="pub-authors">Bowen Wang, Liangzhi Li, <span class="me">Jiahao Zhang</span>, Yuta Nakashima, Hajime Nagahara</p>
@@ -515,9 +542,9 @@
 
   <!-- ?v= is a cache buster: bump it whenever a script or the sprite sheet
        changes shape, so a browser cannot pair new art with a stale script -->
-  <script src="js/main.js?v=38"></script>
-  <script src="js/i18n.js?v=38"></script>
-  <script src="js/vegeta.js?v=38"></script>
-  <script src="js/telemetry.js?v=38"></script>
+  <script src="js/main.js?v=39"></script>
+  <script src="js/i18n.js?v=39"></script>
+  <script src="js/vegeta.js?v=39"></script>
+  <script src="js/telemetry.js?v=39"></script>
 </body>
 </html>

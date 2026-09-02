@@ -589,13 +589,22 @@ a.ribbon:hover {
   .pub, .pub:hover { transform: none; }
 }
 
-/* Publication rows carry no teaser. The four papers worth a figure are shown
-   large in Selected Recent Work above; repeating the same images here put
-   every figure on the page twice and pinned each row to the image's height,
-   leaving 51-100px of empty space beside three lines of text. The row is the
-   citable record, so it stays complete -- #publications is a landing target
-   (the nav, the legacy /publications redirect and the canonical all point at
-   it) and must never be a subset of what is above. */
+/* Every publication row carries a teaser, and NO image is used twice on the
+   page. The four papers that also appear in Selected Recent Work show a
+   different figure here than on their card -- `<name>-pub.jpg` beside
+   `<name>.jpg` -- so the reader never meets the same picture in both places.
+   Keep that pairing if a teaser is ever replaced. */
+.pub-teaser { flex: 0 0 232px; margin: 0; }
+.pub-teaser img {
+  width: 232px;
+  height: 155px;
+  object-fit: cover;
+  border: 1px solid var(--line-bright);
+  border-radius: 9px;
+  background: #fff;
+  display: block;
+}
+
 .pub-body { min-width: 0; }
 
 .pub h4 {
@@ -1122,6 +1131,8 @@ a.lk:hover {
   .hero-photo img { width: 200px; height: 260px; }
   .feat-teaser { flex-basis: 260px; }
   .feat-teaser img { width: 260px; height: 173px; }
+  .pub-teaser { flex-basis: 190px; }
+  .pub-teaser img { width: 190px; height: 127px; }
 }
 
 
@@ -1132,8 +1143,8 @@ a.lk:hover {
   .hero-photo img { width: 150px; height: 195px; }
   .pub, .feat { flex-direction: column; gap: 12px; }
   .feat { padding: 18px; }
-  .feat-teaser { flex-basis: auto; width: 100%; }
-  .feat-teaser img {
+  .pub-teaser, .feat-teaser { flex-basis: auto; width: 100%; }
+  .pub-teaser img, .feat-teaser img {
     width: 100%; max-width: 360px; height: auto; aspect-ratio: 3 / 2;
   }
   .news-list time { flex-basis: 74px; }
