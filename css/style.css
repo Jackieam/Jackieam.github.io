@@ -589,11 +589,12 @@ a.ribbon:hover {
   .pub, .pub:hover { transform: none; }
 }
 
-/* Every publication row carries a teaser, and NO image is used twice on the
-   page. The four papers that also appear in Selected Recent Work show a
-   different figure here than on their card -- `<name>-pub.jpg` beside
-   `<name>.jpg` -- so the reader never meets the same picture in both places.
-   Keep that pairing if a teaser is ever replaced. */
+/* Every publication row carries a teaser. The four papers that also have a
+   Selected Recent Work card deliberately repeat that card's figure here, so a
+   paper reads as the same thing in both places. That is a chosen trade: the
+   same four images appear twice on the page, and each row is pinned to its
+   image height whatever the text length. Distinct `-pub` figures were tried
+   and rejected. */
 .pub-teaser { flex: 0 0 232px; margin: 0; }
 .pub-teaser img {
   width: 232px;
